@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syeda Fatima Rizwan | Projects & Skills</title>
+    <!-- Internal CSS only, replacing Tailwind to meet project guidelines -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles (Identical to aboutus.html) */
+        :root {
+            --color-bg-dark: #121a24;
+            --color-surface-dark: #1a2430;
+            --color-text-light: #c9d1d9;
+            --color-text-dim: #9ca3af; /* Gray-400 equivalent */
+            --color-accent: #4ade80; /* Green-400 */
+            --color-accent-dark: #16a34a; /* Green-600 */
+            --font-inter: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--color-bg-dark); 
+            color: var(--color-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .border-t { border-top: 1px solid #374151; /* Gray-800 */ }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
+        .rounded-xl { border-radius: 0.75rem; }
+        .border-card { border: 1px solid #374151; /* Gray-700 */ }
+
+
+        /* Header/Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(18, 26, 36, 0.9); /* Opaque background */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        nav a.logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 1.125rem;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Skills/Projects Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem; /* gap-10 */
+        }
+        @media (min-width: 640px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem; /* gap-6 */
+            }
+        }
+        @media (min-width: 768px) {
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Skill Card */
+        .skill-card {
+            padding: 1.5rem;
+            background-color: var(--color-surface-dark);
+            transition: all 0.3s;
+        }
+        .skill-card:hover {
+            border-color: var(--color-accent);
+            transform: scale(1.02);
+        }
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* space-x-3 */
+        }
+        .skill-card p.subtitle {
+            font-size: 0.875rem; /* text-sm */
+            color: var(--color-text-dim);
+            margin-top: 0.5rem;
+        }
+        
+        /* Project Card */
+        .project-card {
+            background-color: var(--color-surface-dark);
+            overflow: hidden;
+        }
+        .project-card img {
+            width: 100%;
+            height: 12rem; /* h-48 */
+            object-fit: cover;
+            border-bottom: 1px solid #1f2937; /* Gray-800 */
+        }
+        .project-card-content {
+            padding: 1.5rem;
+        }
+        .project-card-content h3 {
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem;
+        }
+        /* Specific Tag Colors */
+        .tag-pink { background-color: #831843; color: #f9a8d4; }
+        .tag-red { background-color: #991b1b; color: #fca5a5; }
+        .tag-yellow { background-color: #92400e; color: #fcd34d; }
+        .tag-gray { background-color: #4b5563; color: #d1d5db; }
+        .tag-blue { background-color: #1e3a8a; color: #93c5fd; }
+        .tag-purple { background-color: #581c87; color: #d8b4fe; }
+        .tag-green { background-color: #065f46; color: #6ee7b7; }
+
+
+        /* Contact Section */
+        .contact-form-container {
+            max-width: 32rem; /* max-w-xl */
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--color-surface-dark);
+            padding: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-dim);
+            margin-bottom: 0.25rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background-color: #1f2937; /* Gray-800 */
+            border: 1px solid #374151; /* Gray-700 */
+            color: var(--color-text-light);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: 2px solid var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--color-accent-dark);
+            color: white;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #15803d; /* Darker green */
+        }
+        
+
+        /* Footer (Identical to aboutus.html) */
+        footer {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            border-top: 1px solid #374151;
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--color-text-dim);
+        }
+
+        footer a {
+            color: var(--color-text-dim);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--color-accent);
+        }
+        
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <a href="aboutus.html" class="logo">Syeda Fatima Rizwan</a>
+            
+            <!-- Desktop Nav Links -->
+            <div class="nav-links">
+                <a href="aboutus.html">About Us</a>
+                <a href="projects.html" style="color: var(--color-accent); font-weight: 600;">Projects & Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <!-- 1. Skills Section (Work Experience, Skills) -->
+        <section id="skills" class="py-20 border-t">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--color-accent);">Core Expertise</h2>
+            <!-- Grid for Skills -->
+            <div class="grid grid-cols-2 grid-cols-3">
+                
+                <!-- Skill Card 1: Programming (C & C++) -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: var(--color-accent);">
+                            <!-- Code Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">Programming (C & C++)</p>
+                    </div>
+                    <p class="subtitle">Solid understanding of programming concepts, syntax, and problem-solving through code.</p>
+                </div>
+
+                <!-- Skill Card 2: Algorithms -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: #3b82f6;">
+                            <!-- Function Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6H7l-3 6 3 6h11"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">Algorithms</p>
+                    </div>
+                    <p class="subtitle">Ability to analyze, design, and work with algorithmic logic and structured problem-solving.</p>
+                </div>
+
+                <!-- Skill Card 3: MS Office Suite -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: #fcd34d;">
+                            <!-- Clipboard List Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M15 2H9a1 1 0 0 0-1 1v1h8V3a1 1 0 0 0-1-1z"/><path d="M12 11h-4"/><path d="M16 15h-4"/><path d="M12 19h-4"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">MS Office Suite</p>
+                    </div>
+                    <p class="subtitle">Proficient in Word, PowerPoint, and Excel for documentation, presentations, and data handling.</p>
+                </div>
+
+                <!-- Skill Card 4: Video Editing -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: #f87171;">
+                            <!-- Film Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">Video Editing</p>
+                    </div>
+                    <p class="subtitle">Basic to intermediate editing skills for visual content creation and refinement.</p>
+                </div>
+
+                <!-- Skill Card 5: Presentation Software -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: #c084fc;">
+                            <!-- Monitor Play Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 17a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4"/><path d="m10 13 4 2-4 2V13Z"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">Presentation Software</p>
+                    </div>
+                    <p class="subtitle">Skilled in developing clear, engaging digital presentations with strong visual flow.</p>
+                </div>
+
+                <!-- Skill Card 6: Graphic & Logo Design -->
+                <div class="skill-card rounded-xl shadow-lg border-card">
+                    <div class="skill-card-header">
+                        <span style="color: #f472b6;">
+                            <!-- Palette Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0 10 10 10 10 0 0 1-5 8.66c-1-.44-2-1-3-1.66A10 10 0 0 1 2 12 10 10 0 0 0 12 2Z"/></svg>
+                        </span>
+                        <p class="text-xl font-semibold">Graphic & Logo Design</p>
+                    </div>
+                    <p class="subtitle">Experience creating custom logo designs and graphics using design tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Projects Section -->
+        <section id="projects" class="py-20 border-t">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--color-accent);">Featured Projects</h2>
+            <div class="grid grid-cols-2">
+                
+                <!-- Project Card 1: Logo & Content Design Portfolio -->
+                <div class="project-card rounded-xl shadow-lg border-card">
+                    <img src="https://placehold.co/600x400/374151/d1d5db?text=Creative+Design+Project" alt="Logo and Content Design Project Image">
+                    <div class="project-card-content">
+                        <h3 class="text-2xl font-semibold">Logo & Content Design Portfolio</h3>
+                        <p class="subtitle">
+                            Creative Design & Writing Project. A collection of custom logo designs and written content created for multiple clients. Emphasis on creativity, visual identity, and structured writing tailored to client requirements.
+                        </p>
+                        <div class="tag-group">
+                            <span class="tag tag-pink">Graphic Design</span>
+                            <span class="tag tag-red">Video Editing</span>
+                            <span class="tag tag-yellow">MS Office</span>
+                            <span class="tag tag-gray">Content Writing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Academic Writing & Competitions -->
+                <div class="project-card rounded-xl shadow-lg border-card">
+                    <img src="https://placehold.co/600x400/374151/d1d5db?text=Academic+Analysis+Project" alt="Academic Writing and Competitions Image">
+                    <div class="project-card-content">
+                        <h3 class="text-2xl font-semibold">Academic Writing & Competitions</h3>
+                        <p class="subtitle">
+                            Public Writing & Problem-Solving Project. Participated in public writing contests and analytical competitions, developing structured thinking, clarity of expression, and analytical creativity.
+                        </p>
+                        <div class="tag-group">
+                            <span class="tag tag-blue">Creative Writing</span>
+                            <span class="tag tag-purple">Logical Thinking</span>
+                            <span class="tag tag-green">Structured Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Contact Section -->
+        <section id="contact" class="py-20 border-t">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--color-accent);">Let's Connect</h2>
+            <!-- Contact Card -->
+            <div class="contact-form-container rounded-xl shadow-lg border-card">
+                <p class="text-center text-lg" style="color: var(--color-text-dim); margin-bottom: 1.5rem;">
+                    Have a project in mind or just want to say hello? Send me a message!
+                </p>
+                <form onsubmit="event.preventDefault(); console.log('Form submission attempted, this is a demo.'); alert('Thank you for your message! This is a demo form.');" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="What can I help you with?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Syeda Fatima Rizwan. All rights reserved. | Styled with Internal CSS.</p>
+            <div style="margin-top: 1rem;">
+                <a href="mailto:syeda.fatima.rizwan.325@gmail.com">syeda.fatima.rizwan.325@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
